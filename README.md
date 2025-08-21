@@ -92,8 +92,6 @@ Vector-free Sequences
             
 <img width="4800" height="3000" alt="comprehensive_virus_cancer_analysis_classified" src="https://github.com/user-attachments/assets/141a5ab7-b5eb-4917-8137-076da74acd9f" />
 
-<img width="4800" height="3000" alt="comprehensive_virus_cancer_analysis_unclassified" src="https://github.com/user-attachments/assets/2199d68c-0abd-4023-a945-eec35b3b0c3a" />
-
 <img width="4800" height="3000" alt="comprehensive_parasite_cancer_analysis_classified" src="https://github.com/user-attachments/assets/78c5169f-7114-4271-940b-d7f8d2064095" />
 
 <img width="4800" height="3000" alt="comprehensive_parasite_cancer_analysis_unclassified" src="https://github.com/user-attachments/assets/2359e5de-c937-4ef9-ade2-f9e8c068aa19" />
