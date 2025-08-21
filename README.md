@@ -1,4 +1,7 @@
-<img width="1024" height="1536" alt="ChatGPT Image Aug 20, 2025 at 09_36_12 PM" src="https://github.com/user-attachments/assets/326f7fbd-2730-49f5-9887-2821f98e8264" /># viRNAtrap_project (non-canonical antigen prediction)
+
+![WhatsApp Image 2025-08-21 at 14 59 16](https://github.com/user-attachments/assets/6e5e14fd-ab8f-4ed9-9e0b-24db1f54eb31)
+
+viRNAtrap_project (non-canonical antigen prediction)
 
 Raw RNA-seq Data
        ↓
