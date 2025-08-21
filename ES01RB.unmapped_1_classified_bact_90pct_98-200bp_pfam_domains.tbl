@@ -1,0 +1,16 @@
+#                                                                            --- full sequence --- -------------- this domain -------------   hmm coord   ali coord   env coord
+# target name        accession   tlen query name           accession   qlen   E-value  score  bias   #  of  c-Evalue  i-Evalue  score  bias  from    to  from    to  from    to  acc description of target
+#------------------- ---------- ----- -------------------- ---------- ----- --------- ------ ----- --- --- --------- --------- ------ ----- ----- ----- ----- ----- ----- ----- ---- ---------------------
+contig_58554_frame_2 -             48 Glyco_transf_5       PF08323.17   239   2.9e-10   34.0   0.1   1   1   1.5e-12   3.2e-10   33.9   0.1     1    26    23    48    23    48 0.97 -
+contig_74882_frame_3 -             49 TACO1_YebC_N         PF20772.2     73   2.1e-18   60.4   0.0   1   1   1.9e-20   2.2e-18   60.4   0.0    18    65     3    49     1    49 0.96 -
+contig_24647_frame_2 -             49 TACO1_YebC_N         PF20772.2     73   1.6e-16   54.4   0.2   1   1   1.5e-18   1.7e-16   54.3   0.2     5    54     1    49     1    49 0.97 -
+#
+# Program:         hmmsearch
+# Version:         3.4 (Aug 2023)
+# Pipeline mode:   SEARCH
+# Query file:      /home/csalas/csalas_rds/gaurav_rds/virnatrap/has_output/ref_dbs/databases/Pfam-A.hmm
+# Target file:     functional_analysis/ES01RB.unmapped_1_classified_bact_90pct_98-200bp_translated.faa
+# Option settings: hmmsearch --tblout functional_analysis/ES01RB.unmapped_1_classified_bact_90pct_98-200bp_pfam.tbl.tmp --domtblout functional_analysis/ES01RB.unmapped_1_classified_bact_90pct_98-200bp_pfam_domains.tbl.tmp -E 1e-5 --cpu 8 /home/csalas/csalas_rds/gaurav_rds/virnatrap/has_output/ref_dbs/databases/Pfam-A.hmm functional_analysis/ES01RB.unmapped_1_classified_bact_90pct_98-200bp_translated.faa 
+# Current dir:     /data/rds/DMP/UCEC/EVOLIMMU/csalas_rds/gaurav_rds/virnatrap/has_output/blast_results/data_analysis/pipeline
+# Date:            Thu Aug 21 01:32:42 2025
+# [ok]
