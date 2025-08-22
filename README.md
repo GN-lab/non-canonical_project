@@ -32,7 +32,8 @@ Vector-free Sequences
 ┌─────────────────────────────────────────────────────────────┐
 │                    PHASE 1                                  │
 │              Extract 90% Identity Hits                      │
-│  • Filter BLAST results (≥80% identity, ≥50bp alignment)    │
+│  • Filter BLAST results (≥80% identity, ≥50bp alignment,    |
+|query_len >= 20 && pident >= 80 && AL >= 50 && mismatch <= 5 | 
 │  • Generate high-confidence hits TSV and FASTA              │
 └─────────────────────────────────────────────────────────────┘
        ↓ (dependency: afterok)
