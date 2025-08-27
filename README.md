@@ -2,7 +2,9 @@
 ![WhatsApp Image 2025-08-21 at 14 59 16](https://github.com/user-attachments/assets/6e5e14fd-ab8f-4ed9-9e0b-24db1f54eb31)
 
 
-       viRNAtrap_project (non-canonical antigen prediction)
+
+
+       **viRNAtrap_project (non-canonical antigen prediction)**
                      Raw RNA-seq Data
                             ↓
               [nfcore-rnaseq Processing]
@@ -28,11 +30,8 @@
                              ↓
                      BLAST Results TSVs
 
-
-
                   
-                  
-                  Automated Pipeline
+                  **Automated Pipeline**
        ┌─────────────────────────────────────────────────────────────┐
        │                    PHASE 1                                  │
        │              Extract 90% Identity Hits                      │
