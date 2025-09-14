@@ -26,7 +26,7 @@
                              ↓
                    Filtered BLAST results
                              ↓
-      Re-mapping fatsa sequence to original fasta using BWA
+      Re-mapping fasta sequence to original fasta using BWA
 
                   
                           **Automated Pipeline**
