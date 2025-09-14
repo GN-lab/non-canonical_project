@@ -77,6 +77,9 @@
 
 <img width="2400" height="1800" alt="1_microbial_group_distribution" src="https://github.com/user-attachments/assets/eabaf8a8-5c58-4616-a30a-3c8f36e0b2e1" />
 
+<img width="3000" height="3600" alt="3_sample_microbe_heatmap" src="https://github.com/user-attachments/assets/1537d240-ebcd-4d28-b987-460c23d34028" />
+
+
 <img width="2400" height="1800" alt="8_relative_abundance_heatmap" src="https://github.com/user-attachments/assets/00aceda7-3623-4d77-b8c4-1810ac6c7145" />
 
 <img width="4800" height="3000" alt="comprehensive_virus_cancer_analysis" src="https://github.com/user-attachments/assets/fbd23f47-465b-4fa8-af2f-700c20ce27fa" />
