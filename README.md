@@ -4,74 +4,74 @@
 
 
 
-             **(non-canonical contigs prediction)**
+                                                **(non-canonical contigs prediction)**
 
        
-                     Raw RNA-seq Data
-                            ↓
-              [nfcore-rnaseq Processing]
-                            ↓
-              Unmapped RNA Sequences
-                            ↓
-            Reverse-complement R2 and merge with R1 using seq-kit 
-                            ↓
-                     MEGA-HIT assembly to assembles short contigs in to long fasta seq
-                            ↓
-                     Assembled contigs
-                            ↓
-                        VecScreen
-                            ↓
-              Vector-free cleaned fasta
-                              ↓
-       [BLAST Analysis against fungi, bacteria, parasites, virus, human databases]
-                             ↓
-                     BLAST Results TSVs
-                             ↓
-                  Filter out the human hits
-                             ↓
-                   Filtered BLAST results
-                             ↓
-      Re-mapping fatsa sequence to original fasta using BWA
-
-                  
-                          **Automated Pipeline**
-      
-            
-       ┌─────────────────────────────────────────────────────────────┐
-       │                    PHASE 1                                  │
-       │                Coverage Analysis                            │
-       │  • Calculate per-query coverage statistics                  │
-       └─────────────────────────────────────────────────────────────┘
-                     ↓ (dependency: afterok)
-       ┌─────────────────────────────────────────────────────────────┐
-       │                   PHASE 1B                                  │
-       │                Coverage Filtering                           │
-       │  • Filter BLAST results (≥80% identity &&                   │
-       │        coverage >= 70 && E-value <= 1e -5)                  │
-       └─────────────────────────────────────────────────────────────┘
-                     ↓ (dependency: afterok)
-       ┌─────────────────────────────────────────────────────────────┐
-       │                    PHASE 2                                  │
-       │                Length Filtering (20bp-97bp & 97bp-200bp)    │
-       │  • Filter sequences by minimum length requirements          │
-       │  • Generate length-filtered FASTA files                     │
-       └─────────────────────────────────────────────────────────────┘
-                     ↓ (dependency: afterok)
-       ┌─────────────────────────────────────────────────────────────┐
-       │                    PHASE 3                                  │
-       │              Functional Annotation (DIAOMAND/pfam/cog)      │
-       │  • Perform functional analysis of filtered sequences        │
-       │  • Generate annotation results                              │
-       └─────────────────────────────────────────────────────────────┘
-                     ↓ (dependency: afterok)
-       ┌─────────────────────────────────────────────────────────────┐
-       │                    PHASE 4                                  │
-       │            Comprehensive Analysis (R)                       │
-       │  • Statistical analysis and visualization                   │
-       │  • Generate final reports and results                       │
-       └─────────────────────────────────────────────────────────────┘
-                               ↓
-                     Final Results & Reports
+                                                            Raw RNA-seq Data
+                                                                ↓
+                                                      [nfcore-rnaseq Processing]
+                                                                ↓
+                                                          Unmapped RNA Sequences
+                                                                ↓
+                                                Reverse-complement R2 and merge with R1 using seq-kit 
+                                                                ↓
+                                                         MEGA-HIT assembly to assembles short contigs in to long fasta seq
+                                                                ↓
+                                                         Assembled contigs
+                                                                ↓
+                                                            VecScreen
+                                                                ↓
+                                                  Vector-free cleaned fasta
+                                                                  ↓
+                                           [BLAST Analysis against fungi, bacteria, parasites, virus, human databases]
+                                                                 ↓
+                                                         BLAST Results TSVs
+                                                                 ↓
+                                                      Filter out the human hits
+                                                                 ↓
+                                                       Filtered BLAST results
+                                                                 ↓
+                                          Re-mapping fatsa sequence to original fasta using BWA
+                                    
+                                                      
+                                                            **Automated Pipeline**
+                                          
+                                                
+                                           ┌─────────────────────────────────────────────────────────────┐
+                                           │                    PHASE 1                                  │
+                                           │                Coverage Analysis                            │
+                                           │  • Calculate per-query coverage statistics                  │
+                                           └─────────────────────────────────────────────────────────────┘
+                                                         ↓ (dependency: afterok)
+                                           ┌─────────────────────────────────────────────────────────────┐
+                                           │                   PHASE 1B                                  │
+                                           │                Coverage Filtering                           │
+                                           │  • Filter BLAST results (≥80% identity &&                   │
+                                           │        coverage >= 70 && E-value <= 1e -5)                  │
+                                           └─────────────────────────────────────────────────────────────┘
+                                                         ↓ (dependency: afterok)
+                                           ┌─────────────────────────────────────────────────────────────┐
+                                           │                    PHASE 2                                  │
+                                           │                Length Filtering (20bp-97bp & 97bp-200bp)    │
+                                           │  • Filter sequences by minimum length requirements          │
+                                           │  • Generate length-filtered FASTA files                     │
+                                           └─────────────────────────────────────────────────────────────┘
+                                                         ↓ (dependency: afterok)
+                                           ┌─────────────────────────────────────────────────────────────┐
+                                           │                    PHASE 3                                  │
+                                           │              Functional Annotation (DIAOMAND/pfam/cog)      │
+                                           │  • Perform functional analysis of filtered sequences        │
+                                           │  • Generate annotation results                              │
+                                           └─────────────────────────────────────────────────────────────┘
+                                                         ↓ (dependency: afterok)
+                                           ┌─────────────────────────────────────────────────────────────┐
+                                           │                    PHASE 4                                  │
+                                           │            Comprehensive Analysis (R)                       │
+                                           │  • Statistical analysis and visualization                   │
+                                           │  • Generate final reports and results                       │
+                                           └─────────────────────────────────────────────────────────────┘
+                                                                   ↓
+                                                         Final Results & Reports
 
 <img width="4800" height="3600" alt="10_comprehensive_overview" src="https://github.com/user-attachments/assets/aabd266d-90ce-45ef-8354-218851d44376" />
 
