@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BASE='../../nextflow_rnaseq/output_hartwig/star_salmon/unmapped/'
+BASE='../../nextflow_rnaseq/output_hartwig/star_salmon/unmapped/' #change the dir as needed
 OUTDIR='merged_fasta'
 mkdir -p "$OUTDIR"
 
