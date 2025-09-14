@@ -4,9 +4,8 @@
 
 
 
-                                                **(non-canonical contigs prediction)**
-
-       
+                                                 **(non-canonical contigs prediction)**
+                                                 
                                                             Raw RNA-seq Data
                                                                 ↓
                                                       [nfcore-rnaseq Processing]
