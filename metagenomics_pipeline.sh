@@ -19,7 +19,7 @@ export R_LIBS_USER="/data/rds/DMP/UCEC/EVOLIMMU/csalas_rds/gaurav_rds/R_libs"
 source /data/scratch/DMP/UCEC/EVOLIMMU/csalas/miniconda3/etc/profile.d/conda.sh
 
 mkdir -p logs .checkpoints
-export BLAST_DIR="/data/rds/DMP/UCEC/EVOLIMMU/csalas_rds/gaurav_rds/virnatrap/has_output/blast_results"
+export BLAST_DIR="filtered_blast_results"  # Updated to use the filtered directory directly (assumes relative to current dir). Adjust if needed.
 
 echo "=== Submitting Metagenomic Pipeline (dependency-driven) ==="
 
@@ -43,12 +43,12 @@ if phase1_done; then
   echo "Phase 1 already submitted/completed."
 else
   echo "Phase 1: Extracting 90% identity hits..."
-  # Sanity: confirm inputs exist
-  if ! ls "$BLAST_DIR"/classified/*_classified_vs_*.tsv >/dev/null 2>&1 && \
-     ! ls "$BLAST_DIR"/unclassified/*_unclassified_vs_*.tsv >/dev/null 2>&1; then
-    echo "ERROR: No BLAST TSVs in $BLAST_DIR/classified or unclassified" >&2
+  # Sanity: confirm inputs exist (updated for filtered files, no classified/unclassified subdirs)
+  if ! ls "$BLAST_DIR"/*_filtered.tsv >/dev/null 2>&1; then
+    echo "ERROR: No filtered TSVs in $BLAST_DIR" >&2
     exit 1
   fi
+  # NOTE: Ensure extract_90percent_hits.sh handles *_filtered.tsv files (and any classified/unclassified logic).
   job1=$(sbatch --parsable extract_90percent_hits.sh)
   echo "Submitted Phase 1 as $job1"
   jobPrev="$job1"

@@ -43,6 +43,7 @@ coverage_data[, SampleCategory := fcase(
   grepl("^HT03|^HT04|^HT05", Sample), "BRCA_mutated",
   grepl("^HT06|^HT07|^HT08|^HT09|^HT10", Sample), "Tumor",
   grepl("^ES", Sample), "Surrounding",
+  grepl("^CPCT", Sample), "Metastatic",
   default = "Other"
 )]
 

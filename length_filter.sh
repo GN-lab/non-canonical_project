@@ -69,7 +69,7 @@ else
         base_name=$(basename "$fasta_file" _coverage_filtered.fna)
         echo "Processing $base_name..."
 
-        # 48–97bp
+        # 48–97bp (adjusted min to 20 as per Phase 1 filter)
         filter_by_length "$fasta_file" 20 97 "${OUTPUT_DIR}/${base_name}_48-97bp.fna"
         # 98–200bp
         filter_by_length "$fasta_file" 98 200 "${OUTPUT_DIR}/${base_name}_98-200bp.fna"
@@ -103,7 +103,7 @@ for fasta_file in "${OUTPUT_DIR}"/*_*.fna; do
   fi
 done
 
-# R coverage-depth summary
+# R coverage-depth summary (replaced with Python as in original)
 echo "Running python to create coverage_depth_stats.tsv..."
 
 # Activate the virtual environment
@@ -245,9 +245,7 @@ import csv
 
 COVERAGE_DIR = "coverage_filtered"
 OUT_DIR = "cov_analysis"
-
-BLAST_CLASSIFIED_DIR = "/data/rds/DMP/UCEC/EVOLIMMU/csalas_rds/gaurav_rds/virnatrap/has_output/blast_results/classified"
-BLAST_UNCLASSIFIED_DIR = "/data/rds/DMP/UCEC/EVOLIMMU/csalas_rds/gaurav_rds/virnatrap/has_output/blast_results/unclassified"
+BLAST_DIR = "../filtered_blast_results"  # Single directory for filtered BLAST TSVs
 
 GROUP_MAP = {
     "virus": "virus",
@@ -272,8 +270,9 @@ def parse_sample(sample_basename: str):
     stem = re.sub(r"_coverage_filtered_hits$", "", stem)
     stem = re.sub(r"_90pct(_pass)?$", "", stem)
 
+    # Updated parsing for new filenames (e.g., SAMPLE_vs_GROUP_filtered)
     m = re.match(
-        r"^(?P<prefix>[^.]+)\.unmapped_(?P<n>\d+)_(?P<classflag>classified|unclassified)_(?P<group>[^_]+)$",
+        r"^(?P<prefix>[^_]+)_vs_(?P<group>[^_]+)$",
         stem,
         re.IGNORECASE,
     )
@@ -281,19 +280,13 @@ def parse_sample(sample_basename: str):
         return None
 
     prefix = m.group("prefix")
-    unmapped = m.group("n")
-    classflag = m.group("classflag").lower()
     group_raw = m.group("group").lower()
     group_norm = GROUP_MAP.get(group_raw, group_raw)
-    return prefix, unmapped, classflag, group_norm
+    return prefix, group_norm
 
-def build_blast_path(prefix: str, unmapped: str, classflag: str, group: str) -> str | None:
-    if classflag == "classified":
-        fname = f"{prefix}.unmapped_{unmapped}_classified_vs_{group}.tsv"
-        path = os.path.join(BLAST_CLASSIFIED_DIR, fname)
-    else:
-        fname = f"{prefix}.unmapped_{unmapped}_unclassified_vs_{group}.tsv"
-        path = os.path.join(BLAST_UNCLASSIFIED_DIR, fname)
+def build_blast_path(prefix: str, group: str) -> str | None:
+    fname = f"{prefix}_vs_{group}_filtered.tsv"
+    path = os.path.join(BLAST_DIR, fname)
     return path if os.path.isfile(path) else None
 
 def read_keep_qids(coverage_file: str) -> set[str]:
@@ -333,27 +326,18 @@ def stream_blast_rows(blast_path: str, keep_qids: set[str]):
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     
-    # Prepare output files for both classified and unclassified
+    # Prepare output files for each group (no classified/unclassified distinction)
     groups = ["FUNGI", "BACT", "VIRUS", "PARASITE"]
     writers = {}
     handles = {}
     
     for grp in groups:
-        # Classified output
-        path_class = os.path.join(OUT_DIR, f"{grp}_classified_coverage_hits.tsv")
-        fh_class = open(path_class, "w", newline="")
-        w_class = csv.writer(fh_class, delimiter="\t")
-        w_class.writerow(["Sample", "QueryID", "SubjectID", "Identity", "Evalue", "Bitscore", "AlignmentLength"])
-        writers[f"{grp}_classified"] = w_class
-        handles[f"{grp}_classified"] = fh_class
-        
-        # Unclassified output  
-        path_unclass = os.path.join(OUT_DIR, f"{grp}_unclassified_coverage_hits.tsv")
-        fh_unclass = open(path_unclass, "w", newline="")
-        w_unclass = csv.writer(fh_unclass, delimiter="\t")
-        w_unclass.writerow(["Sample", "QueryID", "SubjectID", "Identity", "Evalue", "Bitscore", "AlignmentLength"])
-        writers[f"{grp}_unclassified"] = w_unclass
-        handles[f"{grp}_unclassified"] = fh_unclass
+        path = os.path.join(OUT_DIR, f"{grp}_coverage_hits.tsv")
+        fh = open(path, "w", newline="")
+        w = csv.writer(fh, delimiter="\t")
+        w.writerow(["Sample", "QueryID", "SubjectID", "Identity", "Evalue", "Bitscore", "AlignmentLength"])
+        writers[grp] = w
+        handles[grp] = fh
 
     total = 0
     processed_files = 0
@@ -367,8 +351,8 @@ def main():
                 skipped_files += 1
                 continue
             
-            prefix, unmapped, classflag, group_norm = parts
-            out_grp = f"{group_norm.upper()}_{classflag}"
+            prefix, group_norm = parts
+            out_grp = group_norm.upper()
             
             if out_grp not in writers:
                 print(f"Skipping {sample_base} - group {out_grp} not in output groups")
@@ -383,7 +367,7 @@ def main():
                 skipped_files += 1
                 continue
 
-            blast_path = build_blast_path(prefix, unmapped, classflag, group_norm)
+            blast_path = build_blast_path(prefix, group_norm)
             if not blast_path:
                 print(f"  BLAST file not found")
                 skipped_files += 1
@@ -411,4 +395,3 @@ def main():
 if __name__ == "__main__":
     main()
 EOF
-

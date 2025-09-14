@@ -26,7 +26,7 @@
                              ↓
                    Filtered BLAST results
                              ↓
-      Re-mapping fasta sequence to original fasta using BWA
+      Re-mapping fatsa sequence to original fasta using BWA
 
                   
                           **Automated Pipeline**
@@ -76,9 +76,6 @@
 <img width="2400" height="1800" alt="2_sample_category_distribution" src="https://github.com/user-attachments/assets/7bc2dbbb-bc34-4745-a6fb-60354fa84a74" />
 
 <img width="2400" height="1800" alt="1_microbial_group_distribution" src="https://github.com/user-attachments/assets/eabaf8a8-5c58-4616-a30a-3c8f36e0b2e1" />
-
-<img width="3000" height="3600" alt="3_sample_microbe_heatmap" src="https://github.com/user-attachments/assets/1537d240-ebcd-4d28-b987-460c23d34028" />
-
 
 <img width="2400" height="1800" alt="8_relative_abundance_heatmap" src="https://github.com/user-attachments/assets/00aceda7-3623-4d77-b8c4-1810ac6c7145" />
 

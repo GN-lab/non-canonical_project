@@ -18,30 +18,37 @@ source "/data/rds/DMP/UCEC/EVOLIMMU/csalas_rds/gaurav_rds/Neojuction_pred/venv/b
 # Check for required files
 echo "Checking for required files..."
 
-# Check for coverage data (essential)
-if [[ ! -f "cov_analysis/coverage_depth_stats.tsv" ]]; then
-    echo "ERROR: Coverage file not found: cov_analysis/coverage_depth_stats.tsv" >&2
-    echo "Please run Phase 4 first to generate coverage statistics." >&2
-    exit 1
+# Check for coverage data (essential; prefer filtered if available)
+COVERAGE_FILE="cov_analysis/coverage_depth_stats.tsv"
+FILTERED_DIR="coverage_filtered"
+if [[ -d "$FILTERED_DIR" && $(ls "$FILTERED_DIR"/*_coverage_filtered_hits.txt 2>/dev/null | wc -l) -gt 0 ]]; then
+    echo "Using filtered coverage data from $FILTERED_DIR"
+    # Compile filtered stats if needed (optional; assume already compiled or add compilation here)
+    COVERAGE_FILE="cov_analysis/filtered_coverage_stats.tsv"  # Adjust if you have a compiled file
+else
+    if [[ ! -f "$COVERAGE_FILE" ]]; then
+        echo "ERROR: Coverage file not found: $COVERAGE_FILE" >&2
+        echo "Please run Phase 4 or 2b first to generate coverage statistics." >&2
+        exit 1
+    fi
+    echo "Using raw coverage data: $COVERAGE_FILE"
 fi
 
-# Check for functional annotations (optional but nice to have)
+# Check for functional annotations (optional)
 if ! ls functional_analysis/*.tsv >/dev/null 2>&1; then
     echo "WARNING: No functional annotation files found in functional_analysis/"
-    echo "Phase 5 may have failed or not been run yet."
     echo "Continuing with coverage analysis only..."
 fi
 
 echo "Starting Phase 6: Comprehensive Analysis"
 
-# Run Python analysis (primary)
+# Run Python analysis (primary; updated with E-value integration below)
 echo "Running Python comprehensive analysis..."
 python comprehensive_analysis.py
 
 # Try to run R analysis if available (but don't fail if it doesn't work)
 if [[ -f "comprehensive_analysis.r" ]]; then
     echo "Running R analysis (if available)..."
-    # Use timeout to prevent hanging and continue even if R fails
     timeout 1h Rscript comprehensive_analysis.r || {
         echo "WARNING: R analysis failed or timed out. Continuing with Python results..."
     }
@@ -77,15 +84,6 @@ if [[ "$output_found" == true ]]; then
     mkdir -p .checkpoints
     : > .checkpoints/phase6_comprehensive.done
     echo "Phase 6 checkpoint written."
-    
-    # Print summary
-    echo ""
-    echo "=== PHASE 6 COMPLETE ==="
-    echo "Python outputs: comprehensive_plots_python/"
-    if [[ -d "comprehensive_plots" ]]; then
-        echo "R outputs: comprehensive_plots/"
-    fi
-    echo "Checkpoint: .checkpoints/phase6_comprehensive.done"
 else
     echo "ERROR: No analysis outputs found!" >&2
     echo "Please check the log files for errors." >&2

@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=phase5
 #SBATCH --partition=compute
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=16
 #SBATCH --mem-per-cpu=8042
-#SBATCH --time=24:00:00
+#SBATCH --time=5-00:00:00
 #SBATCH --output=logs/phase5_%j.log
 
 set -euo pipefail
