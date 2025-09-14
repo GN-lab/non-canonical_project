@@ -10,7 +10,9 @@
                             ↓
               Unmapped RNA Sequences
                             ↓
-                     MEGA-HIT assembly
+            Reverse-complement R2 and merge with R1 using seq-kit 
+                            ↓
+                     MEGA-HIT assembly to assembles short contigs in to long fasta seq
                             ↓
                      Assembled contigs
                             ↓
