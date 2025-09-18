@@ -73,7 +73,7 @@
                                                                    ↓
                                                          Final Results & Reports
 
-<img width="6000" height="3000" alt="microbial_coverage_plot_light" src="https://github.com/user-attachments/assets/4b7e8229-1dec-4046-8f1b-3ae98a52fb96" />
+<img width="4096" height="2048" alt="image" src="https://github.com/user-attachments/assets/a4e13a77-c21d-493c-85ac-894452150cae" />
 
 
 <img width="3000" height="2400" alt="4_category_stacked_bar" src="https://github.com/user-attachments/assets/d25f1e67-b9e9-44b6-ab89-9307b2d66035" />
