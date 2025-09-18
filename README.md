@@ -78,7 +78,6 @@
 
 <img width="3000" height="2400" alt="4_category_stacked_bar" src="https://github.com/user-attachments/assets/d25f1e67-b9e9-44b6-ab89-9307b2d66035" />
 
-
 <img width="2400" height="1800" alt="2_sample_category_distribution" src="https://github.com/user-attachments/assets/7bc2dbbb-bc34-4745-a6fb-60354fa84a74" />
 
 <img width="2400" height="1800" alt="1_microbial_group_distribution" src="https://github.com/user-attachments/assets/eabaf8a8-5c58-4616-a30a-3c8f36e0b2e1" />
