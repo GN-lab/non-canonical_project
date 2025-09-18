@@ -84,6 +84,10 @@
 
 <img width="2400" height="1800" alt="8_relative_abundance_heatmap" src="https://github.com/user-attachments/assets/00aceda7-3623-4d77-b8c4-1810ac6c7145" />
 
+<img width="1560" height="1092" alt="image" src="https://github.com/user-attachments/assets/735364de-61ff-4175-84bb-2c102a5d9b3c" />
+
+<img width="1782" height="1080" alt="image" src="https://github.com/user-attachments/assets/0fe7ddfa-9ac4-4e8d-b016-4252e337aa05" />
+
 <img width="4800" height="3000" alt="comprehensive_virus_cancer_analysis" src="https://github.com/user-attachments/assets/fbd23f47-465b-4fa8-af2f-700c20ce27fa" />
 
 <img width="7200" height="4800" alt="comprehensive_bacteria_cancer_analysis" src="https://github.com/user-attachments/assets/7b80423f-d28e-46fa-b2f7-df9cd84e7172" />
